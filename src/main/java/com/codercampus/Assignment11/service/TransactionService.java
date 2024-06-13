@@ -11,9 +11,10 @@ public class TransactionService {
     private final RepositoryService repositoryService;
     private List<Transaction> transactions;
 
-    TransactionService(){
+    public TransactionService(){
         repositoryService = new RepositoryService();
         transactions = repositoryService.findAll();
+        this.sortTransactions();
     }
 
     public List<Transaction> findAll() {
@@ -22,5 +23,12 @@ public class TransactionService {
 
     public void sortTransactions() {
         transactions.sort(Comparator.comparing(Transaction::getDate));
+    }
+
+    public Transaction findById(Long transactionId) {
+        return transactions.stream()
+                .filter(transaction -> transaction.getId().equals(transactionId))
+                .findFirst()
+                .orElse(null);
     }
 }

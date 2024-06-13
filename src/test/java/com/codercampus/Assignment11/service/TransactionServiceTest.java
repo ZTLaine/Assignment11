@@ -10,23 +10,38 @@ import static org.junit.jupiter.api.Assertions.*;
 class TransactionServiceTest {
 
     @Test
-    void find_all() {
+    void testFindAll() {
         TransactionService sut = new TransactionService();
 
         assertNotNull(sut.findAll());
+        assertNotNull(sut.findAll().get(0));
         assertEquals(100, sut.findAll().size());
-        assertEquals("Amazon", sut.findAll().get(0).getRetailer());
-        assertEquals(38.5, sut.findAll().get(99).getAmount().doubleValue());
+        assertTrue(sut.findAll().get(0).getDate().isBefore(sut.findAll().get(1).getDate()));
+//        assertEquals("Amazon", sut.findAll().get(0).getRetailer());
+//        assertEquals(38.5, sut.findAll().get(99).getAmount().doubleValue());
 
     }
 
     @Test
-    void sort_ascending_date() {
+    void testFindById() {
         TransactionService sut = new TransactionService();
+        Long id = 1L;
+        Long id2 = 120L;
 
-        sut.sortTransactions();
-        List<Transaction> transactions = sut.findAll();
+        Transaction foundTransaction = sut.findById(id);
+        Transaction foundTransaction2 = sut.findById(id2);
 
-        assertTrue(transactions.get(0).getDate().isBefore(transactions.get(1).getDate()));
+        assertEquals("Amazon", foundTransaction.getRetailer());
+        assertNull(foundTransaction2);
     }
+
+//    @Test
+//    void testSortAscendingDate() {
+//        TransactionService sut = new TransactionService();
+//
+//        sut.sortTransactions();
+//        List<Transaction> transactions = sut.findAll();
+//
+//        assertTrue(transactions.get(0).getDate().isBefore(transactions.get(1).getDate()));
+//    }
 }
