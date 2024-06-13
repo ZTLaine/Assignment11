@@ -3,6 +3,7 @@ package com.codercampus.Assignment11.service;
 import com.codercampus.Assignment11.domain.Transaction;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -17,5 +18,9 @@ public class TransactionService {
 
     public List<Transaction> findAll() {
         return transactions;
+    }
+
+    public void sortTransactions() {
+        transactions.sort(Comparator.comparing(Transaction::getDate));
     }
 }

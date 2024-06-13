@@ -11,19 +11,22 @@ class TransactionServiceTest {
 
     @Test
     void find_all() {
-        TransactionService service = new TransactionService();
-        List<Transaction> transactions = service.findAll();
+        TransactionService sut = new TransactionService();
 
-        assertNotNull(transactions);
-        assertEquals(100, transactions.size());
-        assertEquals("Amazon", transactions.get(0).getRetailer());
-        assertEquals(38.5, transactions.get(99).getAmount().doubleValue());
+        assertNotNull(sut.findAll());
+        assertEquals(100, sut.findAll().size());
+        assertEquals("Amazon", sut.findAll().get(0).getRetailer());
+        assertEquals(38.5, sut.findAll().get(99).getAmount().doubleValue());
 
     }
 
     @Test
     void sort_ascending_date() {
-        TransactionService service = new TransactionService();
-        List<Transaction> transactions = service.findAll();
+        TransactionService sut = new TransactionService();
+
+        sut.sortTransactions();
+        List<Transaction> transactions = sut.findAll();
+
+        assertTrue(transactions.get(0).getDate().isBefore(transactions.get(1).getDate()));
     }
 }
