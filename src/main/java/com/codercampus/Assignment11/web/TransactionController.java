@@ -29,6 +29,7 @@ public class TransactionController {
     public String getTransaction(@PathVariable Integer transactionId, Model model) {
 //        transactionId being an Integer instead of a Long *might make it barf later*
         Transaction transaction = transactionService.findAll().get(transactionId);
+        model.addAttribute("transaction", transaction);
         return "transactions";
     }
 }
