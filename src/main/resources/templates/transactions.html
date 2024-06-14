@@ -1,4 +1,4 @@
-<html xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 	<head>
 		<title>Online Bank</title>
 		<link rel="stylesheet" href="/css/transactions.css"/>
@@ -23,7 +23,9 @@
 				<td th:text="${transaction.date}">Transaction date</td>
 				<td th:text="${transaction.retailer}">Transaction retailer</td>
 				<td th:if="${transaction.type == 'C'}" th:text="${transaction.amount}">Funds in</td>
+				<td th:unless="${transaction.type == 'C'}"></td>
 				<td th:if="${transaction.type == 'D'}" th:text="${transaction.amount}">Funds out</td>
+				<td th:unless="${transaction.type == 'D'}"></td>
 			</tr>
 		</table>
 	</body>
