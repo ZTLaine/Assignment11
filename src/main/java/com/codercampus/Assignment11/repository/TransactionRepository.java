@@ -44,7 +44,7 @@ public class TransactionRepository {
     @SuppressWarnings("unchecked")
     public void populateData() {
         try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/doNotTouch/transactions.doNotTouch");
-             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);) {
+             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
             this.transactions = (List<Transaction>) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

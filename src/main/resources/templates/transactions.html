@@ -10,42 +10,42 @@
     <link rel="stylesheet" href="/css/transactions.css"/>
 </head>
 <body>
-<div th:if="${transactionList != null}">
-    <h2>Transaction History</h2>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Date</th>
-            <th>Retailer</th>
-            <th>Funds In</th>
-            <th>Funds Out</th>
-        </tr>
-        <tr th:each="transaction : ${transactionList}">
-            <td th:inline="text">
-                <a th:href="@{/transactions/{id}(id=${transaction.id})}">[[${transaction.id}]]</a></td>
-            <td th:text="${transaction.date}">Transaction date</td>
-            <td th:text="${transaction.retailer}">Transaction retailer</td>
-            <td th:if="${transaction.type == 'C'}" th:text="${transaction.amount}">Funds in</td>
-            <td th:unless="${transaction.type == 'C'}"></td>
-            <td th:if="${transaction.type == 'D'}" th:text="${transaction.amount}">Funds out</td>
-            <td th:unless="${transaction.type == 'D'}"></td>
-        </tr>
-    </table>
-</div>
-<div th:unless="${transactionList != null}">
-    <h2 th:if="${transaction.type == 'C'}" th:inline="text">Transaction ID: [[${transaction.id}]] (Credit)</h2>
-    <h2 th:if="${transaction.type == 'D'}" th:inline="text">Transaction ID: [[${transaction.id}]] (Debit)</h2>
-    <p th:inline="text">
-        Date: [[${transaction.date}]]<br>
-        <th:block th:if="${transaction.type == 'C'}" th:inline="text">
-            Amount: -[[${transaction.amount}]]<br>
-        </th:block>
-        <th:block th:if="${transaction.type == 'D'}" th:inline="text">
-            Amount: [[${transaction.amount}]]<br>
-        </th:block>
-        Description: [[${transaction.description}]]<br>
-        <a href="/transactions">back</a>
-    </p>
-</div>
+    <div th:if="${transactionList != null}">
+        <h2>Transaction History</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Retailer</th>
+                <th>Funds In</th>
+                <th>Funds Out</th>
+            </tr>
+            <tr th:each="transaction : ${transactionList}">
+                <td th:inline="text">
+                    <a th:href="@{/transactions/{id}(id=${transaction.id})}">[[${transaction.id}]]</a></td>
+                <td th:text="${transaction.date}">Transaction date</td>
+                <td th:text="${transaction.retailer}">Transaction retailer</td>
+                <td th:if="${transaction.type == 'C'}" th:text="${transaction.amount}">Funds in</td>
+                <td th:unless="${transaction.type == 'C'}"></td>
+                <td th:if="${transaction.type == 'D'}" th:text="${transaction.amount}">Funds out</td>
+                <td th:unless="${transaction.type == 'D'}"></td>
+            </tr>
+        </table>
+    </div>
+    <div th:unless="${transactionList != null}">
+        <h2 th:if="${transaction.type == 'C'}" th:inline="text">Transaction ID: [[${transaction.id}]] (Credit)</h2>
+        <h2 th:if="${transaction.type == 'D'}" th:inline="text">Transaction ID: [[${transaction.id}]] (Debit)</h2>
+        <p th:inline="text">
+            Date: [[${transaction.date}]]<br>
+            <th:block th:if="${transaction.type == 'C'}" th:inline="text">
+                Amount: -[[${transaction.amount}]]<br>
+            </th:block>
+            <th:block th:if="${transaction.type == 'D'}" th:inline="text">
+                Amount: [[${transaction.amount}]]<br>
+            </th:block>
+            Description: [[${transaction.description}]]<br>
+            <a href="/transactions">back</a>
+        </p>
+    </div>
 </body>
 </html>

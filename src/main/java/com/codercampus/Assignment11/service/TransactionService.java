@@ -12,11 +12,10 @@ import java.util.List;
 
 @Service
 public class TransactionService {
-    private final RepositoryService repositoryService;
-    private List<Transaction> transactions;
+    private final List<Transaction> transactions;
 
     public TransactionService() {
-        repositoryService = new RepositoryService();
+        RepositoryService repositoryService = new RepositoryService();
         transactions = repositoryService.findAll();
         this.sortTransactions();
     }
