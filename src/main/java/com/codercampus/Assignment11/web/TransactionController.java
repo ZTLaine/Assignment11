@@ -26,9 +26,8 @@ public class TransactionController {
     }
 
     @GetMapping("/transactions/{transactionId}")
-    public String getTransaction(@PathVariable Integer transactionId, Model model) {
-//        transactionId being an Integer instead of a Long *might make it barf later*
-        Transaction transaction = transactionService.findAll().get(transactionId);
+    public String getTransaction(@PathVariable Long transactionId, Model model) {
+        Transaction transaction = transactionService.findById(transactionId);
         model.addAttribute("transaction", transaction);
         return "transactions";
     }

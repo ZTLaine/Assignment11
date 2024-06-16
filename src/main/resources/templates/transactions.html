@@ -30,7 +30,13 @@
 			</table>
 		</div>
 		<div th:unless="${transactionList != null}">
-			<h2>Transaction ID</h2>
+			<h2 th:if="${transaction.type == 'C'}" th:inline="text">Transaction ID: [[${transaction.id}]] (Credit)</h2>
+			<h2 th:if="${transaction.type == 'D'}" th:inline="text">Transaction ID: [[${transaction.id}]] (Debit)</h2>
+			<p th:inline="text">
+				Date: [[${transaction.date}]]<br>
+				Amount: [[${transaction.amount}]]<br>
+				Description: [[${transaction.description}]]<br>
+			</p>
 		</div>
 	</body>
 </html>
