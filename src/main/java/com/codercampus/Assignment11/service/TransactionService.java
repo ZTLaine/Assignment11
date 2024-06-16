@@ -1,3 +1,7 @@
+//  6/16/24
+//  Zack Laine
+//  Assignment 11
+
 package com.codercampus.Assignment11.service;
 
 import com.codercampus.Assignment11.domain.Transaction;
@@ -11,7 +15,7 @@ public class TransactionService {
     private final RepositoryService repositoryService;
     private List<Transaction> transactions;
 
-    public TransactionService(){
+    public TransactionService() {
         repositoryService = new RepositoryService();
         transactions = repositoryService.findAll();
         this.sortTransactions();
