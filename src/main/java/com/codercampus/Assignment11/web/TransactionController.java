@@ -33,6 +33,7 @@ public class TransactionController {
     public String getTransaction(@PathVariable Long transactionId, Model model) {
         Transaction transaction = transactionService.findById(transactionId);
         model.addAttribute("transaction", transaction);
-        return "transactions";
+        model.addAttribute("attemptedId", transactionId);
+        return "transactionDetails";
     }
 }

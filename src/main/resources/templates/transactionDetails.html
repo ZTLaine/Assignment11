@@ -1,0 +1,35 @@
+<!--
+//  6/16/24
+//  Zack Laine
+//  Assignment 11
+-->
+
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Online Bank</title>
+    <link rel="stylesheet" href="/css/transactions.css"/>
+</head>
+<body>
+<div th:if="${transaction != null}">
+    <h2>Transaction Details</h2>
+    <h2 th:if="${transaction.type == 'C'}" th:inline="text">Transaction ID: [[${transaction.id}]] (Credit)</h2>
+    <h2 th:if="${transaction.type == 'D'}" th:inline="text">Transaction ID: [[${transaction.id}]] (Debit)</h2>
+    <p th:inline="text">
+        Date: [[${transaction.date}]]<br>
+        <th:block th:if="${transaction.type == 'C'}" th:inline="text">
+            Amount: -[[${transaction.amount}]]<br>
+        </th:block>
+        <th:block th:if="${transaction.type == 'D'}" th:inline="text">
+            Amount: [[${transaction.amount}]]<br>
+        </th:block>
+        Description: [[${transaction.description}]]<br>
+        <a href="/transactions">back</a>
+    </p>
+</div>
+<div th:unless="${transaction != null}">
+    <h2 th:inline="text">Error: Transaction ID: [[${attemptedId}]] not found.</h2>
+    <p>The transaction number you attempted to find does not exist.</p>
+    <a href="/transactions">back</a>
+</div>
+</body>
+</html>
